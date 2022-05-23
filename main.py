@@ -18,7 +18,8 @@ def time_delay(func):
         res = func(*args, **kwargs)
         t_end = time.time()
         delay = round(t_end - t_start, 2)
-        return res, delay
+        print(delay)
+        return res
     return wrapper
 
 
@@ -35,10 +36,10 @@ def protect_open(file_name):
 def get_text():
     while True:
         """Return str-variable with text and name of input file"""
-        # name = input("Write name of your file with a extension(for example: Harry_Potter.txt): ")
+        name = input("Write name of your file with a extension(for example: Harry_Potter.txt): ")
         name1 = "dushi.fb2"
         name2 = r"voina-i-mir.epub"
-        name = r"input_copy.txt"
+        name3 = r"input_copy.txt"
         name4 = r"input.txt"
         if "." not in name:
             print("Please write file name with it extension(with '.txt', '.epub' or '.fb2')\n\n")
@@ -63,7 +64,6 @@ def get_text():
     return row_text, name
 
 
-@time_delay
 def parse_website_text(i):
     xpath_input_text = "/html/body/div[1]/div[2]/div/div/div/main/div[2]/form/div/div[1]/div/div/textarea"
     xpath_input_button = "/html/body/div[1]/div[2]/div/div/div/main/div[2]/form/div/div[1]/div/div/div/input"
@@ -86,13 +86,9 @@ def get_row_website_text():
     website_text = ''
     count = (len(row_text) // 5000) + 1
     for i in range(1, count+1):
-        # website_text += parse_website_text(i)
-        f = parse_website_text(i)
-        website_text += f[0]
-        delay = f[1]
-        print(i, delay)
+        website_text += parse_website_text(i)
 
-    with open("Row_transcribed_text_from_website.txt", 'w', encoding='utf-8') as file:
+    with open(r"Temp_files\Row_transcribed_text_from_website.txt", 'w', encoding='utf-8') as file:
         file.write(website_text)
 
     del website_text
@@ -153,7 +149,16 @@ Thanks for using my program:)\n\n""")
 
 
 row_text, name = get_text()
-print("\nFile was opened successful!\n")
+print("\nFile was opened successfully!\n")
+
+try:
+    os.mkdir("Temp_files")
+except FileExistsError:
+    pass
+except:
+    print("Please run program as administrator.")
+    time.sleep(5)
+    sys.exit()
 
 while True:
     try:
@@ -170,7 +175,7 @@ document = Document()
 document.styles['Normal'].font.name = "Cambria"
 document.styles['Normal'].font.size = docx.shared.Pt(16)
 
-row_transcribed_text = protect_open('row_transcribed_text_from_website.txt')
+row_transcribed_text = protect_open(r'Temp_files\row_transcribed_text_from_website.txt')
 row_transcribed_text = do_replace(row_transcribed_text)
 
 sentences_transcribed_text = get_sentences(row_transcribed_text)
