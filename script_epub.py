@@ -43,5 +43,5 @@ def make_convert_epub_to_txt(path_epub):
         for elem in to_delete:
             if elem in out[i]:
                 out[i] = out[i].replace(elem, '')
-    with open(f'{path_of_name}.txt', 'w', encoding='utf-8') as file:
+    with open(path_of_name + '.txt', 'w', encoding='utf-8') as file:
         file.write("".join(out))

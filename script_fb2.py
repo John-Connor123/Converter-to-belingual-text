@@ -54,7 +54,7 @@ else:
         return os.path.join(home, "Downloads")
 
 def make_convert_fb2_to_txt(path_fb2):
-    print("Преобразуем '.fb2' в '.txt'. Сейчас откроется окно сайта, делающего это. Выберите файл, который вы хотите превратить в белингву и просто ждите.")
+    print("Please choose your file again and just wait. Site will do '.fb2' --> '.txt'(it needs to program work).")
     xpath_button_choose_file = "/html/body/div[4]/div[3]/div[1]/div/div/div/button"
     xpath_run_button = "/html/body/div[4]/div[5]/div[2]/div[1]/form/div[3]/button"
     browser = webdriver.Chrome()
