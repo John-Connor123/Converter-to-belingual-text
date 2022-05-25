@@ -2,6 +2,7 @@
      This program make a Bilingual text from English text and it doesn't need a transcription.
     Just put your file to a directory where program is and answer in questions in console.
     My program do all other work.
+    P.s If you want to run this program - download Run_bilingual_maker.rar
     
      Program works with txt, epub, fb2 formats. 
     But if your file has a fb2 format you should choose your file in the folder window which will open later.
