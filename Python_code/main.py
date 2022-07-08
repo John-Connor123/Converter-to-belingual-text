@@ -1,4 +1,3 @@
-# set_word_view  if end_lang is not None:  protect_open заменить name на полный путь до файла
 import docx
 import os
 import sys
@@ -56,7 +55,7 @@ def get_text():
         name_with_ext2 = r"voina-i-mir.epub"
         name_with_ext3 = r"input_copy.txt"
         name_with_ext4 = r"input.txt"
-        #name = easygui.fileopenbox().split('\\')[-1]
+        # name = easygui.fileopenbox().split('\\')[-1]
         if "." not in name_with_ext:
             print("Please write file name with its extension (with '.txt', '.epub', or '.fb2')\n\n")
             continue
@@ -206,10 +205,11 @@ def set_word_view(start_lang, end_lang=None, flag_transcription='yes'):
         input_sentences = get_sentences(protect_open(name+'.txt'))
         print("The program has started make a translate...")
         translated_sentences = Google_translater.do_translate(input_sentences, start_lang=start_lang, end_lang=end_lang)
-# french, transcribed, english
+    # french, transcribed, english
     while True:
         try:
-            order = input(f"\nChange sentence order in the bilingual text (for example: '{start_lang}, {end_lang}, transcribed'): ").strip().lower()
+            order = input(
+                f"\nChange sentence order in the bilingual text (for example: '{start_lang}, {end_lang}, transcribed'): ").strip().lower()
             if order[-1] == '.':
                 order = order[:len(order)-1]
             if order.find(',') == -1:
@@ -254,7 +254,7 @@ def create_word_file(zip_sentences):
         word_element = str(count) + '\n'
         count += 1
         for i in range(len(pack)):
-             word_element += pack[i]
+            word_element += pack[i]
         word_element += '\n'
         document.add_paragraph(word_element)
 
@@ -298,13 +298,13 @@ if __name__ == '__main__':
      This program make a Bilingual text from English text and it doesn't need a transcription.
     Just put your file to a directory where program is and answer in questions in console.
     My program do all other work.
-    
+
      Program works with txt, epub, fb2 formats. 
     But if your file has a fb2 format you should choose your file in the folder window which will open later.
-    
+
      Output file has a name 'Bilingual_(input file name).docx'. 
     File with only transcribed text and replace settings are temp. You can delete package Temp_file if you don't need it.
-    
+
                                               Work_details:
      What does program do? Find your file(for example: it can be a Spanish book) in directory where is this program,
      get translate on another language(for example: on Japanese), and create sentence by sentence bilingual text.
@@ -317,7 +317,7 @@ if __name__ == '__main__':
     P.s. If web-site doesn't loading please run program later 
     because there are rare situations when web-site doesn't available.
      Contacts: ivan.eudokimoff2014@gmail.com
-    
+
     Thanks for using my program:)\n\n""")
     row_text, name = get_text()
     print("The file was opened successfully.\n")
@@ -333,7 +333,8 @@ if __name__ == '__main__':
         elif flag_another_translate == 'no':
             end_lang = None
 
-        flag_transcription = input("Do you want to add transcription(IPA vowel chart) in English?(Yes/No): ").lower().strip()
+        flag_transcription = input(
+            "Do you want to add transcription(IPA vowel chart) in English?(Yes/No): ").lower().strip()
         if flag_another_translate not in ['yes', 'no']:
             print("Please write 'Yes' or 'no'\n")
             continue

@@ -1,0 +1,5 @@
+docx
+selenium
+bs4
+googletrans
+ebooklib
